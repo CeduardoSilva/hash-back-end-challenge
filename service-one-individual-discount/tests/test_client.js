@@ -28,10 +28,10 @@ var packageDefinition = protoLoader.loadSync(
      defaults: true,
      oneofs: true
     });
-var hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
+var individual_discount_proto = grpc.loadPackageDefinition(packageDefinition).individualdiscount;
 
 function main() {
-  var client = new hello_proto.Greeter('localhost:50051',
+  var client = new individual_discount_proto.Discount('localhost:50051',
                                        grpc.credentials.createInsecure());
   var user;
   if (process.argv.length >= 3) {
@@ -39,8 +39,8 @@ function main() {
   } else {
     user = 'world';
   }
-  client.sayHello({name: user}, function(err, response) {
-    console.log('Greeting:', response.message);
+  client.individualDiscount({productId: "mockProductId", userId: "mockUserId"}, function(err, response) {
+    console.log(`RESPONSE: ${JSON.stringify(response)}`);
   });
 }
 

@@ -22,7 +22,7 @@ option objc_class_prefix = "Ind-Disc";
 package individualdiscount;
 
 // The individual discount service definition.
-service discount {
+service Discount {
   // Sends a discount
   rpc IndividualDiscount (IndividualDiscountRequest) returns (IndividualDiscountReply) {}
 }

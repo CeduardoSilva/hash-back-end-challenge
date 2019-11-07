@@ -28,13 +28,31 @@ var packageDefinition = protoLoader.loadSync(
      defaults: true,
      oneofs: true
     });
-var hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
+var individual_discount_proto = grpc.loadPackageDefinition(packageDefinition).individualdiscount;
+
+
+/**
+ * Functions to implement the bussiness logic
+ */
+// Returns today's date formatted as MM/DD/YYYY
+function nowDate() {
+  var now = new Date();
+  var y = now.getFullYear();
+  var m = now.getMonth() + 1;
+  var d = now.getDate();
+  return '' + (m < 10 ? '0' : '') + m + '/' + (d < 10 ? '0' : '') + d  + '/' + y;
+}
+// Receives a user's birthday and checks if it is today. 
+function isBirthday(userBirthday) {
+  return userBirthday.substring(0,5) == nowDate().substring(0,5) ? true : false;
+}
 
 /**
  * Implements the SayHello RPC method.
  */
-function sayHello(call, callback) {
-  callback(null, {message: 'Hello ' + call.request.name});
+function individualDiscount(call, callback) {
+  console.log(JSON.stringify(call.request));
+  callback(null, {discount: '10%'});
 }
 
 /**
@@ -43,9 +61,10 @@ function sayHello(call, callback) {
  */
 function main() {
   var server = new grpc.Server();
-  server.addService(hello_proto.Greeter.service, {sayHello: sayHello});
+  server.addService(individual_discount_proto.Discount.service, {individualDiscount: individualDiscount});
   server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
   server.start();
 }
 
-main();
+//main();
+console.log(isBirthday('11/07/2023'));
