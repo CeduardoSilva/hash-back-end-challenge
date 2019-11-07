@@ -1,0 +1,3 @@
+{"account": {"activeCard": true, "availableLimit": 100, "violations": []}}
+{"account": {"activeCard": true, "availableLimit": 100, "violations": ["insufficient-limit"]}}
+{"account": {"activeCard": true, "availableLimit": 50, "violations": []}}
