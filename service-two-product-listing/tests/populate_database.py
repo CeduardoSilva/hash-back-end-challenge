@@ -1,0 +1,1 @@
+# Populates the data base with products and users

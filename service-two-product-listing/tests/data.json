@@ -1,0 +1,7 @@
+[
+    {"discount": {}, "description": "Description 1", "title": "Product 1", "id": "ID1", "price_in_cents": 568}, 
+    {"discount": {}, "description": "Description 2", "title": "Product 2", "id": "ID2", "price_in_cents": 704}, 
+    {"discount": {}, "description": "Description 3", "title": "Product 3", "id": "ID3", "price_in_cents": 937}, 
+    {"discount": {}, "description": "Description 4", "title": "Product 4", "id": "ID4", "price_in_cents": 517},
+    {"discount": {}, "description": "Description 5", "title": "Product 5", "id": "ID5", "price_in_cents": 954}
+]
