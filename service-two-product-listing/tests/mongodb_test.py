@@ -5,25 +5,26 @@
 import pymongo
 import json
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+myclient = pymongo.MongoClient("mongodb://localhost/TestCollection")
 mydb = myclient["TestDB"]
-mycol = mydb["TestCollection"]
+mycol = mydb["testUsersCollection"]
 
 print(myclient.list_database_names())
 print(mydb.list_collection_names())
 
-mydict = { "name": "John", "address": "4" }
-x = mycol.insert_one(mydict)
+#mydict = { "name": "John", "address": "4" }
+#x = mycol.insert_one(mydict)
 
-myquery = { "address": "2" }
-mydoc = mycol.find({})
+myquery = { "id": "ID1" }
+#mydoc = mycol.find({})
 
-mydelete = { "address": "4" }
-mycol.delete_one(mydelete)
+#mydelete = { "address": "4" }
+#mycol.delete_one(mydelete)
 
-newvalues = { "$set": { "address": "PINTO" } }
+newvalues = { "$set": { "date_of_birth": "11/09" } }
 mycol.update_one(myquery, newvalues)
 
+mydoc = mycol.find({})
 for y in mydoc:
   print(y) 
 

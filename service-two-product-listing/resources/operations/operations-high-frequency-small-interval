@@ -1,6 +1,0 @@
-{ "account": { "activeCard": true, "availableLimit": 100 } }
-{ "transaction": { "merchant": "Merchant A", "amount": 10, "time": "2019-02-13T10:00:01.000Z" } }
-{ "transaction": { "merchant": "Merchant B", "amount": 20, "time": "2019-02-13T10:00:02.000Z" } }
-{ "transaction": { "merchant": "Merchant C", "amount": 30, "time": "2019-02-13T10:00:03.000Z" } }
-{ "transaction": { "merchant": "Merchant D", "amount": 40, "time": "2019-02-13T10:00:04.000Z" } }
-{ "transaction": { "merchant": "Merchant E", "amount": 40, "time": "2019-02-13T11:00:00.000Z" } }

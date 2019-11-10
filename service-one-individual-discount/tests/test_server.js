@@ -16,7 +16,7 @@
  *
  */
 
-var PROTO_PATH = __dirname + '/../protos/individualdiscount.proto';
+var PROTO_PATH = __dirname + '/../../protos/individualdiscount.proto';
 
 var grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
@@ -52,7 +52,7 @@ function isBirthday(userBirthday) {
  */
 function individualDiscount(call, callback) {
   console.log(JSON.stringify(call.request));
-  callback(null, {discount: '10%'});
+  callback(null, {pct: 0.1, valueInCents: 1456});
 }
 
 /**
@@ -66,5 +66,5 @@ function main() {
   server.start();
 }
 
-//main();
-console.log(isBirthday('11/07/2023'));
+main();
+//console.log(isBirthday('11/07/2023'));

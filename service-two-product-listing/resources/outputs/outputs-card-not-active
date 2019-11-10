@@ -1,2 +1,0 @@
-{"account": {"activeCard": false, "availableLimit": 100, "violations": []}}
-{"account": {"activeCard": false, "availableLimit": 100, "violations": ["card-not-active"]}}
