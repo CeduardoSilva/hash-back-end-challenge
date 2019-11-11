@@ -19,8 +19,8 @@ import logging
 
 import grpc
 
-import tests.individualdiscount_pb2 as indDisc
-import tests.individualdiscount_pb2_grpc as indDisc_grpc
+import protobuffers.individualdiscount_pb2 as indDisc
+import protobuffers.individualdiscount_pb2_grpc as indDisc_grpc
 
 def getDiscounts(userId, productId):
     with grpc.insecure_channel('localhost:50051') as channel:

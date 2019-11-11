@@ -35,7 +35,7 @@ message IndividualDiscountRequest {
 
 // The response message containing the greetings
 message IndividualDiscountReply {
-  float pct = 1;
-  int32 value_in_cents = 2;
+  string pct = 1;
+  string value_in_cents = 2;
   string applicable_discounts = 3;
 }

@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='individualdiscount',
   syntax='proto3',
   serialized_options=_b('\n-io.hash-back-end-challenge.individualdiscountB\027IndividualDiscountProtoP\001\242\002\010Ind-Disc'),
-  serialized_pb=_b('\n\x18individualdiscount.proto\x12\x12individualdiscount\">\n\x19IndividualDiscountRequest\x12\x11\n\tproductId\x18\x01 \x01(\t\x12\x0e\n\x06userId\x18\x02 \x01(\t\"\\\n\x17IndividualDiscountReply\x12\x0b\n\x03pct\x18\x01 \x01(\x02\x12\x16\n\x0evalue_in_cents\x18\x02 \x01(\x05\x12\x1c\n\x14\x61pplicable_discounts\x18\x03 \x01(\t2~\n\x08\x44iscount\x12r\n\x12IndividualDiscount\x12-.individualdiscount.IndividualDiscountRequest\x1a+.individualdiscount.IndividualDiscountReply\"\x00\x42U\n-io.hash-back-end-challenge.individualdiscountB\x17IndividualDiscountProtoP\x01\xa2\x02\x08Ind-Discb\x06proto3')
+  serialized_pb=_b('\n\x18individualdiscount.proto\x12\x12individualdiscount\">\n\x19IndividualDiscountRequest\x12\x11\n\tproductId\x18\x01 \x01(\t\x12\x0e\n\x06userId\x18\x02 \x01(\t\"\\\n\x17IndividualDiscountReply\x12\x0b\n\x03pct\x18\x01 \x01(\t\x12\x16\n\x0evalue_in_cents\x18\x02 \x01(\t\x12\x1c\n\x14\x61pplicable_discounts\x18\x03 \x01(\t2~\n\x08\x44iscount\x12r\n\x12IndividualDiscount\x12-.individualdiscount.IndividualDiscountRequest\x1a+.individualdiscount.IndividualDiscountReply\"\x00\x42U\n-io.hash-back-end-challenge.individualdiscountB\x17IndividualDiscountProtoP\x01\xa2\x02\x08Ind-Discb\x06proto3')
 )
 
 
@@ -73,15 +73,15 @@ _INDIVIDUALDISCOUNTREPLY = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='pct', full_name='individualdiscount.IndividualDiscountReply.pct', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value_in_cents', full_name='individualdiscount.IndividualDiscountReply.value_in_cents', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
