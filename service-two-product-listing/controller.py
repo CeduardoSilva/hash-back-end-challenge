@@ -4,7 +4,8 @@ import logic.product_list as productList
 def retrieveProductList(request):
     requestData = adapters.parseRequest(request)
     productListResponse = productList.get(requestData)
-    print(productListResponse)
-    #response = adapters.grpcToJSON(productListResponse)
-    print(productListResponse)
-    return(productListResponse)
+    response = []
+    for product in productListResponse:
+        product["discount"] = adapters.grpcToJSON(product["discount"])
+        response.append(product)
+    return(response)

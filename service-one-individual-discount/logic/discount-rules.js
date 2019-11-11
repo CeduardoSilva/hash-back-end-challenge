@@ -1,4 +1,4 @@
-var blackFridayDate = "11/09"; 
+var blackFridayDate = "11/11"; 
 
 function getCurrDate() {
     var d = new Date(),

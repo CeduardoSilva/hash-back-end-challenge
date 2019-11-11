@@ -12,9 +12,9 @@ def findOne(query, collectionName, dbName):
     return myclient[dbName][collectionName].find(query)
 
 def findAll(collectionName, dbName):
-    return myclient[dbName][collectionName].find({})
-
-#insert({"yourMother": "ASS"},"newCollection1", "TestDB")
-docs = findAll("testUsersCollection","TestDB")
-for doc in docs:
-    print(doc)
+    products = myclient[dbName][collectionName].find({})
+    response = []
+    for product in products:
+        product["_id"] = str(product["_id"])
+        response.append(product)
+    return response

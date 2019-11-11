@@ -26,8 +26,6 @@ def getDiscounts(userId, productId):
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = indDisc_grpc.DiscountStub(channel)
         response = stub.IndividualDiscount(indDisc.IndividualDiscountRequest(productId=productId, userId=userId))
-        print("Returning from gRPC Port")
-        print("Response: "+str(response))
         return(response)
 
 #if __name__ == '__main__':
