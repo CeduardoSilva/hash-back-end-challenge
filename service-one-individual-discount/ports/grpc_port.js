@@ -18,6 +18,17 @@ var individual_discount_proto = grpc.loadPackageDefinition(packageDefinition).in
  */
 async function individualDiscount(call, callback) {
   var discountReply = await controller.individualDiscount(call.request);
+  
+  // Trying to parse shit
+  discountReply.applicable_discounts = JSON.stringify(discountReply.applicable_discounts);
+  discountReply.pct = parseFloat(discountReply.pct);
+  discountReply.value_in_cents = parseInt(discountReply.value_in_cents);
+  
+  console.log(`Discount: ${JSON.stringify(discountReply)}`);
+  console.log(`pct: ${typeof discountReply.pct}`);
+  console.log(`value_in_cents: ${typeof discountReply.value_in_cents}`);
+  console.log(`applicable_discounts: ${typeof discountReply.applicable_discounts}`);
+
   callback(null,discountReply);
 }
 

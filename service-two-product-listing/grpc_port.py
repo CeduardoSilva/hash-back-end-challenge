@@ -19,16 +19,17 @@ import logging
 
 import grpc
 
-import tests.individualdiscount_pb2
-import tests.individualdiscount_pb2_grpc
+import tests.individualdiscount_pb2 as indDisc
+import tests.individualdiscount_pb2_grpc as indDisc_grpc
 
-
-def run():
+def getDiscounts(userId, productId):
     with grpc.insecure_channel('localhost:50051') as channel:
-        stub = individualdiscount_pb2_grpc.DiscountStub(channel)
-        response = stub.IndividualDiscount(individualdiscount_pb2.IndividualDiscountRequest(productId='mockedProductId', userId='mockedUserId'))
-    print(response)
+        stub = indDisc_grpc.DiscountStub(channel)
+        response = stub.IndividualDiscount(indDisc.IndividualDiscountRequest(productId=productId, userId=userId))
+        print("Returning from gRPC Port")
+        print("Response: "+str(response))
+        return(response)
 
-if __name__ == '__main__':
-    logging.basicConfig()
-    run()
+#if __name__ == '__main__':
+#    logging.basicConfig()
+#    run()

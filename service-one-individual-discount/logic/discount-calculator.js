@@ -2,7 +2,7 @@ var discountRules = require('./discount-rules').rules;
 var discountLimit = 0.30;
 
 function discountPct(normalPrice, discountedPrice) {
-    return (1-(discountedPrice/normalPrice)).toFixed(2);
+    return (1-(discountedPrice/normalPrice));
 }
 
 function calculatesDiscount(userData, productData) {

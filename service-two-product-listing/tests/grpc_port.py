@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """The Python implementation of the GRPC helloworld.Greeter client."""
-# python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/route_guide.proto
+# python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/individualdiscount.proto
 
 from __future__ import print_function
 import logging

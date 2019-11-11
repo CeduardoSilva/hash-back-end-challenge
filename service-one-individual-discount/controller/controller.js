@@ -14,8 +14,6 @@ async function individualDiscount(request) {
         console.log(`User: ${JSON.stringify(user)}`);
 
         var discount = logic.calculatesDiscount(user, product);
-        console.log(`Discount: ${JSON.stringify(discount)}`);
-        
         resolve(discount);
 
     });
