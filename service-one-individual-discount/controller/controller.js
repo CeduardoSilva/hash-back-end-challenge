@@ -13,8 +13,20 @@ async function individualDiscount(request) {
         console.log(`Product: ${JSON.stringify(product)}`);
         console.log(`User: ${JSON.stringify(user)}`);
 
-        var discount = logic.calculatesDiscount(user, product);
-        resolve(discount);
+        if(user == null) {
+            console.log(`User came null`);
+            reject({});
+        }
+        if(product == null) {
+            console.log(`Product came null`);
+            reject({});
+        }
+
+        if(user && product) {
+            console.log("CALLING SHIT ANYWAY");
+            var discount = logic.calculatesDiscount(user, product);
+            resolve(discount);
+        }
 
     });
 }

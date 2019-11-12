@@ -19,6 +19,11 @@ class DiscountStub(object):
         request_serializer=individualdiscount__pb2.IndividualDiscountRequest.SerializeToString,
         response_deserializer=individualdiscount__pb2.IndividualDiscountReply.FromString,
         )
+    self.IndividualDiscountStream = channel.stream_stream(
+        '/individualdiscount.Discount/IndividualDiscountStream',
+        request_serializer=individualdiscount__pb2.IndividualDiscountRequest.SerializeToString,
+        response_deserializer=individualdiscount__pb2.IndividualDiscountReply.FromString,
+        )
 
 
 class DiscountServicer(object):
@@ -32,11 +37,23 @@ class DiscountServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def IndividualDiscountStream(self, request_iterator, context):
+    """Streams discounts
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_DiscountServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'IndividualDiscount': grpc.unary_unary_rpc_method_handler(
           servicer.IndividualDiscount,
+          request_deserializer=individualdiscount__pb2.IndividualDiscountRequest.FromString,
+          response_serializer=individualdiscount__pb2.IndividualDiscountReply.SerializeToString,
+      ),
+      'IndividualDiscountStream': grpc.stream_stream_rpc_method_handler(
+          servicer.IndividualDiscountStream,
           request_deserializer=individualdiscount__pb2.IndividualDiscountRequest.FromString,
           response_serializer=individualdiscount__pb2.IndividualDiscountReply.SerializeToString,
       ),

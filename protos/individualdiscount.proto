@@ -25,6 +25,8 @@ package individualdiscount;
 service Discount {
   // Sends a discount
   rpc IndividualDiscount (IndividualDiscountRequest) returns (IndividualDiscountReply) {}
+  // Streams discounts
+  rpc IndividualDiscountStream (stream IndividualDiscountRequest) returns (stream IndividualDiscountReply) {}
 }
 
 // The request message containing the user's name.

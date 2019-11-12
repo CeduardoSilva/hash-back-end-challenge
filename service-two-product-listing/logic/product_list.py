@@ -14,9 +14,11 @@ def get(requestData):
     if(requestData["userId"]):
         print("Received Id!")
         for product in productsCursor:
-            ass = grpc.getDiscounts(requestData["userId"], product["id"])
-            print(ass)
-            product["discount"] = grpcToDict(ass)
+            try:
+                product["discount"] = grpcToDict(grpc.getDiscounts(requestData["userId"], product["id"]))
+            except Exception as e: 
+                print("Error connecting to Individual Discount Service")
+                product["discount"] = {}
             response.append(product)
     else:
         for product in productsCursor:
