@@ -10,7 +10,7 @@ function calculatesDiscount(userData, productData) {
     var discount = {
         pct: 0,
         value_in_cents: 0,
-        applicable_discounts: []
+        applicable_discounts: ""
     };
 
     var currPrice = productData.price_in_cents;
@@ -20,7 +20,7 @@ function calculatesDiscount(userData, productData) {
         let discountPct = discountRules[i].ruleFunction(userData, productData);
         if(discountPct) {
             currPrice = currPrice - (currPrice * discountPct);
-            discount.applicable_discounts.push(discountRules[i].ruleName);
+            discount.applicable_discounts += (discountRules[i].ruleName + " ");
         }
         if(currPrice < limitPrice) {
             currPrice = limitPrice;

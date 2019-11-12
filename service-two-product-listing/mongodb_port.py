@@ -15,6 +15,6 @@ def findAll(collectionName, dbName):
     products = myclient[dbName][collectionName].find({})
     response = []
     for product in products:
-        product["_id"] = str(product["_id"])
+        del product["_id"]
         response.append(product)
     return response
