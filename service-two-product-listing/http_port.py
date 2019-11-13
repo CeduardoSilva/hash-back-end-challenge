@@ -11,5 +11,11 @@ def product():
     print(productList)
     return { "products": productList }, 200
 
+@app.route('/productStream',methods = ['GET'])
+def productStream():
+    productList = controller.retrieveProductListStream(request)
+    print(productList)
+    return { "products": productList }, 200
+
 if __name__ == "__main__":
    serve(app, host='0.0.0.0', port=5000)

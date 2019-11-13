@@ -5,3 +5,8 @@ def retrieveProductList(request):
     requestData = adapters.parseRequest(request)
     productListResponse = productList.get(requestData)
     return(productListResponse)
+
+def retrieveProductListStream(request):
+    requestData = adapters.parseRequest(request)
+    productListResponse = productList.getStream(requestData)
+    return(productListResponse)

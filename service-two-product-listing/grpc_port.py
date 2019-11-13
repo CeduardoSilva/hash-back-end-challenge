@@ -22,12 +22,30 @@ import grpc
 import protobuffers.individualdiscount_pb2 as indDisc
 import protobuffers.individualdiscount_pb2_grpc as indDisc_grpc
 
+def makeRequest(productId, userId):
+    return indDisc.IndividualDiscountRequest(
+        productId=productId,
+        userId=userId
+    )
+
+def generateMessages(dataList):
+    for pair in dataList:
+        yield makeRequest(pair["productId"], pair["userId"])
+
 # TRY CATCH HERE
 def getDiscounts(userId, productId):
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = indDisc_grpc.DiscountStub(channel)
         response = stub.IndividualDiscount(indDisc.IndividualDiscountRequest(productId=productId, userId=userId))
         return(response)
+
+def getDiscountsStream(dataList):
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = indDisc_grpc.DiscountStub(channel)
+        responses = stub.IndividualDiscountStream(generateMessages(dataList))
+        for response in responses:
+            print("Received:")
+            print(response)
 
 #if __name__ == '__main__':
 #    logging.basicConfig()

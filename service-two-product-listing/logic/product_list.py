@@ -25,3 +25,37 @@ def get(requestData):
             product["discount"] = {}
             response.append(product)
     return(productsCursor)
+
+def getStream(requestData):
+    # Parametrizar
+    productsCursor = mongodb.findAll("testProductsCollection", "TestDB")
+    response = []
+    products = []
+
+    for product in productsCursor:
+        products.append(product)
+
+    if(requestData["userId"]):
+        print("Received Id!")
+        requestList = []
+        for product in products:
+            requestList.append({"productId": product["id"], "userId": requestData["userId"]})
+        
+        try:
+            discounts = grpc.getDiscountsStream(requestList)
+            print("Discounts")
+            print(discounts)
+            for i in range(0,len(discounts)):
+                products[i]["discount"] = grpcToDict(discounts[i])
+                response.append(product[i])
+        except Exception as e: 
+            print("Error connecting to Individual Discount Service")
+            print(e)
+            for product in products:
+                product["discount"] = {}
+                response.append(product)
+    else:
+        for product in products:
+            product["discount"] = {}
+            response.append(product)
+    return(response)
