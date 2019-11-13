@@ -1,5 +1,6 @@
 var PROTO_PATH = __dirname + '/../../protos/individualdiscount.proto';
 
+var _ = require('lodash');
 var controller = require('../controller/controller');
 var grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
@@ -17,11 +18,14 @@ var individual_discount_proto = grpc.loadPackageDefinition(packageDefinition).in
  * Tries to implement the stream
 */
 function individualDiscountStream(call) {
-  call.on('data', function(individualDiscountRequest) {
+
+  var requestsList = [];
+
+  /*call.on('data', function(individualDiscountRequest) {
     controller.individualDiscount(individualDiscountRequest).then(discountReply => {
       console.log(`Discount: ${JSON.stringify(discountReply)}`);
       call.write(discountReply);
-      console.log("Written...")
+      console.log("Written...");
     }).catch(e => {
       console.log(`Couldn't calculate discount`);
       call.write(e);
@@ -30,6 +34,21 @@ function individualDiscountStream(call) {
   call.on('end', function() {
     console.log("ENDED");
     call.end();
+  });*/
+
+  call.on('data', (individualDiscountRequest) => {
+    console.log(`Received streamed item: ${JSON.stringify(individualDiscountRequest)}`);
+    requestsList.push(individualDiscountRequest);
+  });
+  call.on('end', function() {
+    var count = 0;
+    _.each(requestsList, (request) => {
+      controller.individualDiscount(request).then(discountReply => {
+        call.write(discountReply);
+        count++;
+        if(count == requestsList.length) call.end();
+      });
+    });
   });
 }
 

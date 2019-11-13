@@ -34,18 +34,21 @@ def generateMessages(dataList):
 
 # TRY CATCH HERE
 def getDiscounts(userId, productId):
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel('localhost:50051') as channel:    
+        print("Creating stub...")
         stub = indDisc_grpc.DiscountStub(channel)
+        print("Connecting to stub...")
         response = stub.IndividualDiscount(indDisc.IndividualDiscountRequest(productId=productId, userId=userId))
         return(response)
 
 def getDiscountsStream(dataList):
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = indDisc_grpc.DiscountStub(channel)
-        responses = stub.IndividualDiscountStream(generateMessages(dataList))
-        for response in responses:
-            print("Received:")
-            print(response)
+        discounts = stub.IndividualDiscountStream(generateMessages(dataList))
+        response = []
+        for discount in discounts:
+            response.append(discount)
+        return(response)
 
 #if __name__ == '__main__':
 #    logging.basicConfig()

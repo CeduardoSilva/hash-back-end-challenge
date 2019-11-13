@@ -2,8 +2,6 @@ import grpc_port as grpc
 import mongodb_port as mongodb
 
 def grpcToDict(data):
-    print("Discount:")
-    print(data.applicable_discounts)
     dataDict = { "pct": round(float(data.pct),2), "value_in_cents": int(data.value_in_cents), "applicable_discounts": data.applicable_discounts }
     return dataDict
 
@@ -18,6 +16,7 @@ def get(requestData):
                 product["discount"] = grpcToDict(grpc.getDiscounts(requestData["userId"], product["id"]))
             except Exception as e: 
                 print("Error connecting to Individual Discount Service")
+                print(e)
                 product["discount"] = {}
             response.append(product)
     else:
@@ -25,6 +24,7 @@ def get(requestData):
             product["discount"] = {}
             response.append(product)
     return(productsCursor)
+
 
 def getStream(requestData):
     # Parametrizar
@@ -44,10 +44,13 @@ def getStream(requestData):
         try:
             discounts = grpc.getDiscountsStream(requestList)
             print("Discounts")
-            print(discounts)
+            print(len(discounts))
             for i in range(0,len(discounts)):
+                print("Looping"+str(i))
                 products[i]["discount"] = grpcToDict(discounts[i])
-                response.append(product[i])
+                print(products[i])
+                response.append(products[i])
+            print("ENDING LOOP")
         except Exception as e: 
             print("Error connecting to Individual Discount Service")
             print(e)
