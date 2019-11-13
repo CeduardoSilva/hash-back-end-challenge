@@ -8,13 +8,11 @@ app = Flask(__name__)
 @app.route('/product',methods = ['GET'])
 def product():
     productList = controller.retrieveProductList(request)
-    print(productList)
     return { "products": productList }, 200
 
 @app.route('/productStream',methods = ['GET'])
 def productStream():
     productList = controller.retrieveProductListStream(request)
-    print(productList)
     return { "products": productList }, 200
 
 if __name__ == "__main__":

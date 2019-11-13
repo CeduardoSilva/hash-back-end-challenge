@@ -14,19 +14,13 @@ function getCurrDate() {
 }
 
 function discountBirthday(userData, productData) {
-    if(userData.date_of_birth == getCurrDate()) {
-        return 0.05;
-    } else {
-        return false;
-    }
+    if(userData.date_of_birth == getCurrDate()) return 0.05;
+    return false;
 }
 
 function discountBlackFriday(userData, productData) {
-    if(blackFridayDate == getCurrDate()) {
-        return 0.10;
-    } else {
-        return false;
-    }
+    if(blackFridayDate == getCurrDate()) return 0.10;
+    return false;
 }
 
 var discountRules = [

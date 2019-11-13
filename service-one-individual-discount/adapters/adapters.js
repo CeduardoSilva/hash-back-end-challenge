@@ -4,10 +4,6 @@ function parseRequest(request) {
 
         var productId = request.productId;
         var userId = request.userId;
-
-        console.log(`Product Id: ${productId}`);
-        console.log(`User Id: ${userId}`);
-
         resolve({productId: productId, userId: userId});
 
     });

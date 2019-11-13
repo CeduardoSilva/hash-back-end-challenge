@@ -32,12 +32,9 @@ def generateMessages(dataList):
     for pair in dataList:
         yield makeRequest(pair["productId"], pair["userId"])
 
-# TRY CATCH HERE
 def getDiscounts(userId, productId):
     with grpc.insecure_channel('localhost:50051') as channel:    
-        print("Creating stub...")
         stub = indDisc_grpc.DiscountStub(channel)
-        print("Connecting to stub...")
         response = stub.IndividualDiscount(indDisc.IndividualDiscountRequest(productId=productId, userId=userId))
         return(response)
 

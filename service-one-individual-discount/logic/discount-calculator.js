@@ -19,7 +19,7 @@ function calculatesDiscount(userData, productData) {
     for(let i = 0; i < discountRules.length; i++) {
         let discountPct = discountRules[i].ruleFunction(userData, productData);
         if(discountPct) {
-            currPrice = currPrice - (currPrice * discountPct);
+            currPrice -= (currPrice * discountPct);
             discount.applicable_discounts += (discountRules[i].ruleName + " ");
         }
         if(currPrice < limitPrice) {

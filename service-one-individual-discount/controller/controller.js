@@ -10,23 +10,9 @@ async function individualDiscount(request) {
         var user = await mongodbPort.findOne({id: params.userId}, "testUsersCollection", "TestDB");
         var product = await mongodbPort.findOne({id: params.productId}, "testProductsCollection", "TestDB");
 
-        console.log(`Product: ${JSON.stringify(product)}`);
-        console.log(`User: ${JSON.stringify(user)}`);
-
-        if(user == null) {
-            console.log(`User came null`);
-            reject({});
-        }
-        if(product == null) {
-            console.log(`Product came null`);
-            reject({});
-        }
-
-        if(user && product) {
-            console.log("CALLING SHIT ANYWAY");
-            var discount = logic.calculatesDiscount(user, product);
-            resolve(discount);
-        }
+        if(user == null) reject({});
+        if(product == null) reject({});
+        if(user && product) resolve(logic.calculatesDiscount(user, product));
 
     });
 }
