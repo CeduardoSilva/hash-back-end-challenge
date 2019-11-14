@@ -12,6 +12,8 @@ def product():
 
 @app.route('/productStream',methods = ['GET'])
 def productStream():
+    print(request)
+    print(type(request))
     productList = controller.retrieveProductListStream(request)
     return { "products": productList }, 200
 

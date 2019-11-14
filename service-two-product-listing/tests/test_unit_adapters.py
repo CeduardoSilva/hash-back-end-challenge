@@ -1,12 +1,14 @@
 import pytest
+import requests
 import adapters.adapters as adapters
 
 def test_parseRequest():
     """
     Document
     """
-    mockedRequest = 
-    assert adapters.jsonToDict(jsonData) == { 'account': {'activeCard': True, 'availableLimit': 1000 }}
-
+    mockedRequest = {}
+    local = Local()
+    assert adapters.parseRequest(mockedRequest) == { "userId": "ID1" }
+    
 if __name__ == '__main__':
     unittest.main()
