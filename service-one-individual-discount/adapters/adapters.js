@@ -1,3 +1,7 @@
+/**
+ * TESTED
+ * @param {*} request 
+ */
 function parseRequest(request) {
 
     return new Promise(async (resolve,reject) => {

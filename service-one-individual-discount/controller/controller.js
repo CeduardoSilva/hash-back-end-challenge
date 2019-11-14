@@ -2,6 +2,10 @@ var adapters = require('../adapters/adapters');
 var mongodbPort = require('../ports/mongodb_port');
 var logic = require('../logic/discount-calculator');
 
+/**
+ * TESTED
+ * @param {} request 
+ */
 async function individualDiscount(request) {
     return new Promise(async (resolve, reject) => {
 

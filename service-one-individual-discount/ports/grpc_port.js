@@ -15,7 +15,7 @@ var packageDefinition = protoLoader.loadSync(
 var individual_discount_proto = grpc.loadPackageDefinition(packageDefinition).individualdiscount;
 
 function individualDiscountStream(call) {
-
+  
   var requestsList = [];
 
   call.on('data', (individualDiscountRequest) => {
@@ -37,6 +37,7 @@ function individualDiscountStream(call) {
   });
 }
 
+// REMOVE AND ADJUST
 function individualDiscount(call, callback) {
 
   controller.individualDiscount(call.request).then(discountReply => {
@@ -47,6 +48,9 @@ function individualDiscount(call, callback) {
   
 }
 
+/**
+ * Don't need testing
+ */
 function getServer() {
   var server = new grpc.Server();
   server.addService(individual_discount_proto.Discount.service, {
@@ -56,6 +60,9 @@ function getServer() {
   return server;
 }
 
+/**
+ * Dont need testing
+ */
 function main() {
   var server = new getServer();
   server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
