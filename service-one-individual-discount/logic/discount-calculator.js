@@ -2,18 +2,20 @@ var discountRules = require('./discount-rules').rules;
 var discountLimit = 0.30;
 
 /**
- * TESTED
- * @param {*} normalPrice 
- * @param {*} discountedPrice 
+ * Returns the percentage represented by discountedPrice in relation to normalPrice
+ * @param {Number} normalPrice 
+ * @param {Number} discountedPrice 
+ * @return {Number} percentage
  */
 function discountPct(normalPrice, discountedPrice) {
     return (1-(discountedPrice/normalPrice));
 }
 
 /**
- * TESTED
- * @param {} userData 
- * @param {} productData 
+ * Returns a Object with the discount calculated for the product and user received
+ * @param {Object} userData 
+ * @param {Object} productData 
+ * @param {Object} discount
  */
 function calculatesDiscount(userData, productData) {
 

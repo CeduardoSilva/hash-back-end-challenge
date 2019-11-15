@@ -14,6 +14,10 @@ var packageDefinition = protoLoader.loadSync(
     });
 var individual_discount_proto = grpc.loadPackageDefinition(packageDefinition).individualdiscount;
 
+/**
+ * Manage the streaming between gRPC client and server
+ * @param {individualDiscountRequest} call 
+ */
 function individualDiscountStream(call) {
   
   var requestsList = [];
@@ -37,19 +41,9 @@ function individualDiscountStream(call) {
   });
 }
 
-// REMOVE AND ADJUST
-function individualDiscount(call, callback) {
-
-  controller.individualDiscount(call.request).then(discountReply => {
-    callback(null,discountReply);
-  }).catch(e => {    
-    callback(null,e);
-  })
-  
-}
-
 /**
- * Don't need testing
+ * Create the gRPC server instance
+ * @return {Object} server
  */
 function getServer() {
   var server = new grpc.Server();
@@ -61,7 +55,7 @@ function getServer() {
 }
 
 /**
- * Dont need testing
+ * Set the server up and starts it
  */
 function main() {
   var server = new getServer();

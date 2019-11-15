@@ -5,13 +5,19 @@ import controller as controller
 
 app = Flask(__name__)
 
-@app.route('/product',methods = ['GET'])
-def product():
-    productList = controller.retrieveProductList(request)
-    return { "products": productList }, 200
+# TODO - Remove this function and adjust
+#@app.route('/product',methods = ['GET'])
+#def product():
+#    productList = controller.retrieveProductList(request)
+#    return { "products": productList }, 200
 
 @app.route('/productStream',methods = ['GET'])
 def productStream():
+    """Receives a HTTP Get request and return a list of Products.
+
+    Returns:
+        dict: Dict with discounted Products List
+    """
     print(request)
     print(type(request))
     productList = controller.retrieveProductListStream(request)
