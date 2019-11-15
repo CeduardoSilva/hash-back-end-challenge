@@ -1,16 +1,13 @@
 /**
- * TESTED
- * @param {*} request 
+ * Parse a IndividualDiscount Request.
+ * @param {IndividualDiscountRequest} request 
+ * @returns {Object} With productId and userId from the request.
  */
 function parseRequest(request) {
 
-    return new Promise(async (resolve,reject) => {
-
-        var productId = request.productId;
-        var userId = request.userId;
-        resolve({productId: productId, userId: userId});
-
-    });
+    var productId = request.productId;
+    var userId = request.userId;
+    return({productId: productId, userId: userId});
     
 }
 
