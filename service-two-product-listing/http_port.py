@@ -2,14 +2,9 @@ from flask import Flask
 from flask import request
 from waitress import serve
 import controller as controller
+import config.httpconfig as httpconfig
 
 app = Flask(__name__)
-
-# TODO - Remove this function and adjust
-#@app.route('/product',methods = ['GET'])
-#def product():
-#    productList = controller.retrieveProductList(request)
-#    return { "products": productList }, 200
 
 @app.route('/productStream',methods = ['GET'])
 def productStream():
@@ -24,4 +19,4 @@ def productStream():
     return { "products": productList }, 200
 
 if __name__ == "__main__":
-   serve(app, host='0.0.0.0', port=5000)
+   serve(app, host=httpconfig.host, port=httpconfig.port)

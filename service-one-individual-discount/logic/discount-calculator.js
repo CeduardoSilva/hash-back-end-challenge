@@ -1,4 +1,5 @@
 var discountRules = require('./discount-rules').rules;
+// TODO - Parametrize this
 var discountLimit = 0.30;
 
 /**

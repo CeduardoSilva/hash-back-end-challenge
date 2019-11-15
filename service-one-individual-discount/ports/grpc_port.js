@@ -13,6 +13,7 @@ var packageDefinition = protoLoader.loadSync(
      oneofs: true
     });
 var individual_discount_proto = grpc.loadPackageDefinition(packageDefinition).individualdiscount;
+var grpcconfig = require('../config/grpcconfig.json');
 
 /**
  * Manage the streaming between gRPC client and server
@@ -48,8 +49,7 @@ function individualDiscountStream(call) {
 function getServer() {
   var server = new grpc.Server();
   server.addService(individual_discount_proto.Discount.service, {
-    individualDiscountStream: individualDiscountStream,
-    individualDiscount: individualDiscount
+    individualDiscountStream: individualDiscountStream
   });
   return server;
 }
@@ -59,7 +59,7 @@ function getServer() {
  */
 function main() {
   var server = new getServer();
-  server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
+  server.bind(grpcconfig.url, grpc.ServerCredentials.createInsecure());
   server.start();
 }
 

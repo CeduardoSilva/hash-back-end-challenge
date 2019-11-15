@@ -1,12 +1,6 @@
 import adapters.adapters as adapters
 import logic.product_list as productList
 
-# TODO - Remove this function and adjust
-#def retrieveProductList(request):
-#    requestData = adapters.parseRequest(request)
-#    productListResponse = productList.get(requestData)
-#    return(productListResponse)
-
 def retrieveProductListStream(request):
     """Calls the logic layer to get the product list.
 

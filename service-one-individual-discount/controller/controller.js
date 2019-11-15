@@ -1,6 +1,7 @@
 var adapters = require('../adapters/adapters');
 var mongodbPort = require('../ports/mongodb_port');
 var logic = require('../logic/discount-calculator');
+var dbConfig = require('../config/dbconfig.json');
 
 /**
  * Returns a object with a calculated discount to a specific product and user.
@@ -12,8 +13,8 @@ async function individualDiscount(request) {
 
         var params = adapters.parseRequest(request);
         
-        var user = await mongodbPort.findOne({id: params.userId}, "testUsersCollection", "TestDB");
-        var product = await mongodbPort.findOne({id: params.productId}, "testProductsCollection", "TestDB");
+        var user = await mongodbPort.findOne({id: params.userId}, dbConfig.usersCollectionName, dbConfig.databaseName);
+        var product = await mongodbPort.findOne({id: params.productId}, dbConfig.productsCollectionName, dbConfig.databaseName);
 
         if(user == null) reject({});
         if(product == null) reject({});

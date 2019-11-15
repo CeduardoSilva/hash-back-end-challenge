@@ -1,6 +1,5 @@
-var dbName = "TestDB";
 var MongoClient = require('mongodb').MongoClient;
-var url = `mongodb://localhost:27017/${dbName}`;
+var dbConfig = require('../config/dbconfig.json');
 
 /**
  * Creates a collection on the database with the name received
@@ -9,7 +8,7 @@ var url = `mongodb://localhost:27017/${dbName}`;
  */
 function createCollection(collectionName, dbName) {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(`${dbConfig.url}/${dbName}`, function(err, db) {
             if (err) throw reject(err);
             var dbo = db.db(dbName);
             dbo.createCollection(collectionName, function(err, res) {
@@ -29,7 +28,7 @@ function createCollection(collectionName, dbName) {
  */
 function insert(data, collectionName, dbName) {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(`${dbConfig.url}/${dbName}`, function(err, db) {
             if (err) throw reject(err);
             var dbo = db.db(dbName);
             dbo.collection(collectionName).insertOne(data, function(err, res) {
@@ -51,7 +50,7 @@ function insert(data, collectionName, dbName) {
  */
 function findOne(query, collectionName, dbName) {
     return new Promise((resolve,reject) => {
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(`${dbConfig.url}/${dbName}`, function(err, db) {
             if (err) throw reject(err);
             var dbo = db.db(dbName);
             dbo.collection(collectionName).findOne(query, function(err, result) {
@@ -71,7 +70,7 @@ function findOne(query, collectionName, dbName) {
  */
 function findAll(collectionName, dbName) {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(`${dbConfig.url}/${dbName}`, function(err, db) {
             if (err) throw reject(err);
             var dbo = db.db(dbName);
             dbo.collection(collectionName).find({}).toArray(function(err, result) {

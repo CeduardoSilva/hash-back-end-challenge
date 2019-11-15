@@ -21,6 +21,7 @@ import grpc
 
 import protobuffers.individualdiscount_pb2 as indDisc
 import protobuffers.individualdiscount_pb2_grpc as indDisc_grpc
+import config.grpcconfig as grpcconfig
 
 def makeRequest(productId, userId):
     """Generates a gRPC request with the data received.
@@ -50,13 +51,6 @@ def generateMessages(dataList):
     for pair in dataList:
         yield makeRequest(pair["productId"], pair["userId"])
 
-# TODO - Remove this function and adjust
-#def getDiscounts(userId, productId):
-#    with grpc.insecure_channel('localhost:50051') as channel:    
-#        stub = indDisc_grpc.DiscountStub(channel)
-#        response = stub.IndividualDiscount(indDisc.IndividualDiscountRequest(productId=productId, userId=userId))
-#        return(response)
-
 def getDiscountsStream(dataList):
     """Streams a list of products to the gRPC server and receives a list of products with discounts.
 
@@ -66,14 +60,10 @@ def getDiscountsStream(dataList):
     Returns:
         list: Discounted Products List
     """
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel(grpcconfig.url) as channel:
         stub = indDisc_grpc.DiscountStub(channel)
         discounts = stub.IndividualDiscountStream(generateMessages(dataList))
         response = []
         for discount in discounts:
             response.append(discount)
         return(response)
-
-#if __name__ == '__main__':
-#    logging.basicConfig()
-#    run()

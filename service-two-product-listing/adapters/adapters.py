@@ -16,7 +16,3 @@ def parseRequest(request):
         "userId": request.headers.get("X-User-Id")
     }
     return parsedRequest
-
-# TODO - Check if I even use this function and remove or document it
-def dictToJson(dictData):
-    return json.dumps(dictData)

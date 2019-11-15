@@ -1,4 +1,5 @@
-var blackFridayDate = "11/14"; 
+// TODO - Parametrize this
+var blackFridayDate = "11/15"; 
 
 /**
  * Returns current day and month in the format MM/DD
