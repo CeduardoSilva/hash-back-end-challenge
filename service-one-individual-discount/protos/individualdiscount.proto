@@ -15,24 +15,27 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "io.grpc.examples.helloworld";
-option java_outer_classname = "HelloWorldProto";
-option objc_class_prefix = "HLW";
+option java_package = "io.hash-back-end-challenge.individualdiscount";
+option java_outer_classname = "IndividualDiscountProto";
+option objc_class_prefix = "Ind-Disc";
 
-package helloworld;
+package individualdiscount;
 
-// The greeting service definition.
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+// The individual discount service definition.
+service Discount {
+  // Streams discounts
+  rpc IndividualDiscountStream (stream IndividualDiscountRequest) returns (stream IndividualDiscountReply) {}
 }
 
 // The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
+message IndividualDiscountRequest {
+  string productId = 1;
+  string userId = 2;
 }
 
 // The response message containing the greetings
-message HelloReply {
-  string message = 1;
+message IndividualDiscountReply {
+  string pct = 1;
+  string value_in_cents = 2;
+  string applicable_discounts = 3;
 }

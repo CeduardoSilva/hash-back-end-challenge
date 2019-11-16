@@ -1,6 +1,8 @@
 var discountRules = require('./discount-rules').rules;
-// TODO - Parametrize this
-var discountLimit = 0.30;
+var parameters = require('../config/parameters.json');
+
+// Max discount value
+var discountLimit = parameters.discountLimit;
 
 /**
  * Returns the percentage represented by discountedPrice in relation to normalPrice

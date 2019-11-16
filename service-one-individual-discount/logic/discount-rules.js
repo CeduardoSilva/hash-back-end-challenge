@@ -1,6 +1,3 @@
-// TODO - Parametrize this
-var blackFridayDate = "11/15"; 
-
 /**
  * Returns current day and month in the format MM/DD
  * @returns {String} MM/DD
@@ -30,7 +27,6 @@ function discountBirthday(userData, productData) {
     return false;
 }
 
-//TODO - Test
 /**
  * Returns a percentage if the black friday discount is applicable to the received user and product, otherwise returns false
  * @param {Object} userData 
@@ -39,6 +35,7 @@ function discountBirthday(userData, productData) {
  * @returns {Boolean} false
  */
 function discountBlackFriday(userData, productData) {
+    var blackFridayDate = "11/15"; 
     if(blackFridayDate == getCurrDate()) return 0.10;
     return false;
 }

@@ -1,4 +1,4 @@
-var PROTO_PATH = __dirname + '/../../protos/individualdiscount.proto';
+var PROTO_PATH = __dirname + '/../protos/individualdiscount.proto';
 
 var _ = require('lodash');
 var controller = require('../controller/controller');

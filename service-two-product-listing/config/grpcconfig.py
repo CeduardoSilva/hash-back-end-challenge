@@ -1,1 +1,1 @@
-url = 'localhost:50051'
+url = 'service-one:50051'
