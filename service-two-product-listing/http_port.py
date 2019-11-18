@@ -16,5 +16,5 @@ def productStream():
     productList = controller.retrieveProductListStream(request)
     return { "products": productList }, 200
 
-if __name__ == "__main__":
+def startServer():
    serve(app, host=httpconfig.host, port=httpconfig.port)
