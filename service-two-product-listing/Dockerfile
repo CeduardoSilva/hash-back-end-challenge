@@ -18,6 +18,6 @@ COPY ./grpc_port.py /home/service-two-product-listing
 COPY ./http_port.py /home/service-two-product-listing
 COPY ./mongodb_port.py /home/service-two-product-listing
 
-RUN pip install pymongo flask waitress grpcio grpcio-tools
+RUN pip install pymongo flask waitress grpcio grpcio-tools mock pytest pytest_mock
 
 ENTRYPOINT python service-two-product-listing/http_port.py

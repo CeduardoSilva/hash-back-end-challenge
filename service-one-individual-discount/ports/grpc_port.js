@@ -63,4 +63,8 @@ function main() {
   server.start();
 }
 
+module.exports = {
+  individualDiscountStream: individualDiscountStream
+}
+
 main();

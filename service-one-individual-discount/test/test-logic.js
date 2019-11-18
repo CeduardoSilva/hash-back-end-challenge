@@ -53,6 +53,3 @@ describe('Tests the birthday discount rule', () => {
     assert.equal(discountRules.discountBirthday(mockedUserData, mockedProductData), 0.05);
   });
 });
-
-//var result = discountPct(100, 50);
-//console.log(result);

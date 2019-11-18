@@ -2,19 +2,6 @@ import grpc_port as grpc
 import mongodb_port as mongodb
 import config.dbconfig as config
 
-def grpcToDict(data):
-    """Converts the discount information received via gRPC to a dict.
-
-    Args:
-        arg (gRPC Reply): Data received via gRPC
-
-    Returns:
-        dict: Dict containing the discount information
-
-    """
-    dataDict = { "pct": round(float(data.pct),2), "value_in_cents": int(data.value_in_cents), "applicable_discounts": data.applicable_discounts }
-    return dataDict
-
 def getStream(requestData):
     """Gets the product list from the database and tries to apply discounts calling the Service 1.
 
@@ -39,8 +26,13 @@ def getStream(requestData):
         
         try:
             discounts = grpc.getDiscountsStream(requestList)
+
+            with open('ass', 'w') as file:
+                file.write(str(discounts))
+                file.close()
+
             for i in range(0,len(discounts)):
-                products[i]["discount"] = grpcToDict(discounts[i])
+                products[i]["discount"] = discounts[i]
                 response.append(products[i])
         except Exception as e: 
             print("Error connecting to Individual Discount Service")

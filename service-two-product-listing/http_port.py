@@ -13,8 +13,6 @@ def productStream():
     Returns:
         dict: Dict with discounted Products List
     """
-    print(request)
-    print(type(request))
     productList = controller.retrieveProductListStream(request)
     return { "products": productList }, 200
 
