@@ -1,0 +1,1 @@
+mock = [{'value_in_cents': 0, 'applicable_discounts': u'', 'pct': 0.0}, {'value_in_cents': 0, 'applicable_discounts': u'', 'pct': 0.0}, {'value_in_cents': 0, 'applicable_discounts': u'', 'pct': 0.0}, {'value_in_cents': 0, 'applicable_discounts': u'', 'pct': 0.0}, {'value_in_cents': 0, 'applicable_discounts': u'', 'pct': 0.0}]
