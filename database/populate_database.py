@@ -1,54 +1,49 @@
-# Populates the data base with products and users
+# Populates the main data base and the test data base with products and users
 
 import pymongo
 import json
 
-client = pymongo.MongoClient("mongodb://localhost/TestCollection")
+client = pymongo.MongoClient("mongodb://localhost:27017")
 
-db = client["TestDB"]
-businessLogicDB = client["BusinessLogicDB"]
+db = client["MainDB"]
+testDB = client["TestDB"]
 
-testProductsCollection = db["testProductsCollection"]
-testUsersCollection = db["testUsersCollection"]
+productsCollection = db["productsCollection"]
+usersCollection = db["usersCollection"]
 
-specialDaysCollection = businessLogicDB["specialDaysCollection"]
-discountParametersCollection = businessLogicDB["discountParametersCollection"]
+testProductsCollection = testDB["testProductsCollection"]
+testUsersCollection = testDB["testUsersCollection"]
 
 with open('products.json', 'r') as file:
     products = json.load(file)
     for product in products:
+        productsCollection.insert_one(product)
         testProductsCollection.insert_one(product)
 
 with open('users.json', 'r') as file:
     users = json.load(file)
     for user in users:
+        usersCollection.insert_one(user)
         testUsersCollection.insert_one(user)
 
-with open('discountparameters.json', 'r') as file:
-    parameters = json.load(file)
-    for parameter in parameters:
-        discountParametersCollection.insert_one(parameter)
+allUsers = usersCollection.find({})
+allProducts = productsCollection.find({})
 
-with open('specialdays.json', 'r') as file:
-    specialDays = json.load(file)
-    for day in specialDays:
-        specialDaysCollection.insert_one(day)
+allTestUsers = testUsersCollection.find({})
+allTestProducts = testProductsCollection.find({})
 
-allUsers = testUsersCollection.find({})
-allProducts = testProductsCollection.find({})
-allParameters = discountParametersCollection.find({})
-allSpecialDays = specialDaysCollection.find({})
-
+print("MainDB")
 for user in allUsers:
     print(user)
 
 for product in allProducts:
     print(product)
 
-for day in allSpecialDays:
-    print(day)
+print("TestDB")
+for user in allTestUsers:
+    print(user)
 
-for parameter in allParameters:
-    print(parameter)
+for product in allTestProducts:
+    print(product)
 
 print("DONE")

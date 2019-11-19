@@ -1,6 +1,6 @@
 {
-    "databaseName": "TestDB",
-    "usersCollectionName": "testUsersCollection",
-    "productsCollectionName": "testProductsCollection",
+    "databaseName": "MainDB",
+    "usersCollectionName": "usersCollection",
+    "productsCollectionName": "productsCollection",
     "url": "mongodb://mongodb:27017"
 }

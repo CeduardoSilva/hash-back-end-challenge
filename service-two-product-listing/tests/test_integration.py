@@ -8,12 +8,10 @@ class request:
     def get(header):
         return self.headers[header]
 
+def checkResponse(response):
+    print("TODO")
+    
 def test_integration():
-    """
-    Document
-    """
-    mocker.patch.object(logic, 'getStream') 
-    logic.getStream.return_value = logicReturnValue
     mockedRequest = request({ "X-User-Id": "ID1" })
     assert controller.retrieveProductListStream(mockedRequest) == logicReturnValue
     
