@@ -130,4 +130,4 @@ The tests are executed during the deployment of the containers, in case any test
 
 ### Adding new discount rules
 
-To add new discount rules just add a function to implement this rule on the 
+To add new discount rules just add a function to implement this rule on the `logic/`
