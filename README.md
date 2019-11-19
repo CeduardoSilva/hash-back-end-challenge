@@ -146,7 +146,7 @@ To run the Service Two Container execute the following commando from any directo
 
 ## Tests
 
-The tests are executed during the deployment of the containers, in case any test fail the container will not remain active.
+The unit and integration tests are executed during the deployment of the containers, in case any test fail the container will not remain active.
 
 ## Extending the Application
 
