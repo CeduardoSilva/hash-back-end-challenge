@@ -38,11 +38,11 @@ The controller acts as a connector between all the layers and orchestrates the f
 
 To run the services you must first build the images for both services and start a Mongodb container. All three containers must be executed inside the same Docker Network.
 
-### Building the images
+### 1 - Building the images
 
 Following are the instructions to build each image.
 
-#### Service One Image
+#### 1.1 Service One Image
 
 From the `service-one-individual-discount` directory execute the following command to build the Service One Image.
 
@@ -56,7 +56,7 @@ Confirm that the image was correctly built by executing the following command. T
 docker images
 ```
 
-#### Service Two Image
+#### 1.2 Service Two Image
 
 From the `service-two-product-listing` directory execute the following command to build the Service Two Image.
 
@@ -70,7 +70,7 @@ Confirm that the image was correctly built by executing the following command. T
 docker images
 ```
 
-### Creating the network
+### 2 - Creating the network
 
 Run the following command to create the Docker Network which the services are going to use.
 
@@ -84,11 +84,11 @@ Confirm the successfull creation of the network with the following command. The 
 docker network ls
 ```
 
-### Starting all containers
+### 3 - Starting all containers
 
 Following are instructions to run all the containers and populate the tests databases. The services containers are going to execute tests and their deploy will fail in case any of the tests fail.
 
-#### MongoDB Container
+#### 3.1 MongoDB Container
 
 To run the MongoDB Container execute the following command from any directory. After the deploy of the container the data base must be populated.
 
@@ -96,7 +96,7 @@ To run the MongoDB Container execute the following command from any directory. A
 docker run -d -p 27017-27019:27017-27019 --net=hash-challenge-net --name mongodb mongo:4.0.4
 ```
 
-#### Populating database
+#### 3.2 Populating database
 
 To populate the database just run the following command from the `database` directory found at the root directory of the project, after successfully running the MongoDB Container.
 
@@ -104,7 +104,7 @@ To populate the database just run the following command from the `database` dire
 python populate_database.py
 ```
 
-#### Service One Container
+#### 3.3 Service One Container
  
 To run the Service One Container execute the following command from any directory.
 
@@ -124,7 +124,7 @@ You can verify if the container was correctly started by executing the following
 docker container ls
 ```
 
-#### Service Two Container
+#### 3.4 Service Two Container
 
 To run the Service Two Container execute the following commando from any directory.
  

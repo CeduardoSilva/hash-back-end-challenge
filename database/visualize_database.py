@@ -14,20 +14,6 @@ usersCollection = db["usersCollection"]
 #testProductsCollection = testDB["testProductsCollection"]
 #testUsersCollection = testDB["testUsersCollection"]
 
-with open('products.json', 'r') as file:
-    products = json.load(file)
-    for product in products:
-        print("Adding product")
-        productsCollection.insert_one(product)
-        #testProductsCollection.insert_one(product)
-
-with open('users.json', 'r') as file:
-    users = json.load(file)
-    for user in users:
-        print("adding user")
-        usersCollection.insert_one(user)
-        #testUsersCollection.insert_one(user)
-
 allUsers = usersCollection.find({})
 allProducts = productsCollection.find({})
 
