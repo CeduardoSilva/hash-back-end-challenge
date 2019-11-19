@@ -27,19 +27,17 @@ def getStream(requestData):
         try:
             discounts = grpc.getDiscountsStream(requestList)
 
-            with open('ass', 'w') as file:
-                file.write(str(discounts))
-                file.close()
-
             for i in range(0,len(discounts)):
                 products[i]["discount"] = discounts[i]
                 response.append(products[i])
+
         except Exception as e: 
             print("Error connecting to Individual Discount Service")
             print(e)
             for product in products:
                 product["discount"] = {}
                 response.append(product)
+                
     else:
         for product in products:
             product["discount"] = {}

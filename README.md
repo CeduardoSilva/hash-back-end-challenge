@@ -106,7 +106,7 @@ python populate_database.py
 
 #### Service One Container
  
-To run the Service One Container execute the following commando from any directory.
+To run the Service One Container execute the following command from any directory.
 
 ```
 docker run -d -p 50051:50051 --net=hash-challenge-net --name service-one service-one-image:v1

@@ -1,4 +1,5 @@
 const assert = require('chai').assert;
+const expect = require('chai').expect;
 const discountCalculator = require('../logic/discount-calculator');
 const discountRules = require('../logic/discount-rules');
 
@@ -21,24 +22,14 @@ var mockedUserData = {
   'first_name': 'First Name 1', 
   'id': 'ID1'
 };
-var mockedProductData = {
-  'description': 'Description 1',
-  'title': 'Product 1',
-  'price_in_cents': 1000,
-  'discount': {}, 
-  'id': 'ID1'
-};
-
-var mockedDiscountData = { 
-  'pct': 0.050000000000000044,
-  'value_in_cents': 50,
-  'applicable_discounts': 'Birthday Discount ' 
-};
+var mockedProductData = require('../test/mock/product_mock.json');
 
 describe('Tests the function calculatesDiscount', () => {
-  it('Test: Must return a discount object', () => {
-    var testResult = JSON.stringify(discountCalculator.calculatesDiscount(mockedUserData, mockedProductData));
-    assert.equal(testResult, JSON.stringify(mockedDiscountData));
+  it('must return a discount object', () => {    
+    var testResult = discountCalculator.calculatesDiscount(mockedUserData, mockedProductData);
+    expect(testResult).to.have.property("pct");
+    expect(testResult).to.have.property("value_in_cents");
+    expect(testResult).to.have.property("applicable_discounts");
   });
 });
 

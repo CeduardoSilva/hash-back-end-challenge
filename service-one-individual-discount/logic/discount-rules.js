@@ -35,7 +35,7 @@ function discountBirthday(userData, productData) {
  * @returns {Boolean} false
  */
 function discountBlackFriday(userData, productData) {
-    var blackFridayDate = "11/25"; 
+    var blackFridayDate = "11/19"; 
     if(blackFridayDate == getCurrDate()) return 0.10;
     return false;
 }
