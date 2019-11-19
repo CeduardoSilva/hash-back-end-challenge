@@ -1,10 +1,5 @@
 import pytest
-import mock
 import controller as controller
-import logic.product_list as logic
-import mocks.logic_response_mock as logicReturnValue
-
-from pytest_mock import mocker 
 
 class request:
     def __init__(self, headers):
@@ -13,7 +8,7 @@ class request:
     def get(header):
         return self.headers[header]
 
-def test_retrieveProductListStream(mocker):
+def test_integration():
     """
     Document
     """

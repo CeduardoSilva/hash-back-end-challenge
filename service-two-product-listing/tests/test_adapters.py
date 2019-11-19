@@ -9,10 +9,9 @@ class request:
         return self.headers[header]
 
 def test_parseRequest():
-    """
-    Document
-    """
+
     mockedRequest = request({ "X-User-Id": "ID1" })
+    
     assert adapters.parseRequest(mockedRequest) == { "userId": "ID1" }
     
 if __name__ == '__main__':

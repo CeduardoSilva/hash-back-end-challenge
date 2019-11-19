@@ -50,13 +50,11 @@ From the `service-one-individual-discount` directory execute the following comma
 docker build -t service-one-image:v1 .
 ```
 
-Confirm that the image was correctly built by executing the following command.
+Confirm that the image was correctly built by executing the following command. The service-one-image must be listed.
 
 ```
 docker images
 ```
-
-The service-one-image must be listed.
 
 #### Service Two Image
 
@@ -111,7 +109,19 @@ python populate_database.py
 To run the Service One Container execute the following commando from any directory.
 
 ```
+docker run -d -p 50051:50051 --net=hash-challenge-net --name service-one service-one-image:v1
+```
+
+The command above will run the container on the background, if you want interactive mode execute the following command.
+
+```
 docker run -it -p 50051:50051 --net=hash-challenge-net --name service-one service-one-image:v1
+```
+
+You can verify if the container was correctly started by executing the following command and checking if the container is listed.
+
+```
+docker container ls
 ```
 
 #### Service Two Container
@@ -119,7 +129,19 @@ docker run -it -p 50051:50051 --net=hash-challenge-net --name service-one servic
 To run the Service Two Container execute the following commando from any directory.
  
  ```
+ docker run -d -p 5000:5000 --net=hash-challenge-net --name service-two service-two-image:v1
+ ```
+
+ The command above will run the container on the background, if you want interactive mode execute the following command.
+
+ ```
  docker run -it -p 5000:5000 --net=hash-challenge-net --name service-two service-two-image:v1
+ ```
+
+ You can verify if the container was correctly started by executing the following command and checking if the container is listed.
+
+ ```
+ docker container ls
  ```
 
 ## Tests
@@ -130,4 +152,26 @@ The tests are executed during the deployment of the containers, in case any test
 
 ### Adding new discount rules
 
-To add new discount rules just add a function to implement this rule on the `logic/`
+To add new discount rules just add a function to implement this rule on the `service-one-individual-discount/logic/discount-rules.js` file.
+All rule functions must follow the signature below.
+
+```javascript
+function ruleFunction(userData, productData) {
+    if(/*Condition to discount is met*/) return /*discount percentage*/;
+    /* else */return false;
+}
+```
+
+Then you need to add the function to the discountRules array at the end of the file.
+
+```javascript
+var discountRules = [
+    {
+        ruleFunction: ruleFunction,
+        ruleName: "Discount Rule Name" 
+    }, 
+    /*
+    More rules...
+    */
+]
+```

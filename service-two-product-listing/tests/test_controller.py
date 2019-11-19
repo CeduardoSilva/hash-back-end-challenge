@@ -14,12 +14,12 @@ class request:
         return self.headers[header]
 
 def test_retrieveProductListStream(mocker):
-    """
-    Document
-    """
+
     mocker.patch.object(logic, 'getStream') 
     logic.getStream.return_value = logicReturnValue
+
     mockedRequest = request({ "X-User-Id": "ID1" })
+    
     assert controller.retrieveProductListStream(mockedRequest) == logicReturnValue
     
 if __name__ == '__main__':

@@ -24,9 +24,11 @@ function individualDiscountStream(call) {
   var requestsList = [];
 
   call.on('data', (individualDiscountRequest) => {
+    console.log("Received gRPC data");
     requestsList.push(individualDiscountRequest);
   });
   call.on('end', function() {
+    console.log("Finished receiving gRPC data");
     var count = 0;
     _.each(requestsList, (request) => {
       controller.individualDiscount(request).then(discountReply => {

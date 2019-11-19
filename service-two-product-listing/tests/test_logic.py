@@ -10,10 +10,7 @@ import mocks.test_logic_response as logicResponse
 from pytest_mock import mocker 
 
 def test_getStream(mocker):
-    """
-    Document
-    """
-    
+
     mocker.patch.object(grpc, 'getDiscountsStream')
     mocker.patch.object(mongodb, 'findAll')
 
