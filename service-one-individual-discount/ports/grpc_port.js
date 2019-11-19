@@ -57,14 +57,14 @@ function getServer() {
 /**
  * Set the server up and starts it
  */
-function main() {
+function startServer() {
   var server = new getServer();
   server.bind(grpcconfig.url, grpc.ServerCredentials.createInsecure());
   server.start();
+  console.log('gRPC Server started');
 }
 
 module.exports = {
-  individualDiscountStream: individualDiscountStream
+  individualDiscountStream: individualDiscountStream,
+  startServer: startServer
 }
-
-main();

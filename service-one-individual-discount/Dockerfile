@@ -18,9 +18,10 @@ COPY ./test /home/service-one-individual-discount/test
 COPY ./package.json /home/service-one-individual-discount
 COPY ./package-lock.json /home/service-one-individual-discount
 COPY ./protos /home/service-one-individual-discount/protos
+COPY ./app.js /home/service-one-individual-discount
 
 WORKDIR /home/service-one-individual-discount
 
 RUN npm install
 
-ENTRYPOINT node ports/grpc_port.js
+ENTRYPOINT node app.js
