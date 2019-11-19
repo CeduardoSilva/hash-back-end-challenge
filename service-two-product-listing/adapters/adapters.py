@@ -1,5 +1,3 @@
-# Adapters Layer
-
 import json
 
 def parseRequest(request):

@@ -1,8 +1,4 @@
-from __future__ import print_function
-import logging
-
 import grpc
-
 import protobuffers.individualdiscount_pb2 as indDisc
 import protobuffers.individualdiscount_pb2_grpc as indDisc_grpc
 import config.grpcconfig as grpcconfig
