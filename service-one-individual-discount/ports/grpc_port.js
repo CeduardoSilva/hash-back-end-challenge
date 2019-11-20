@@ -30,6 +30,7 @@ function individualDiscountStream(call) {
   call.on('end', function() {
     console.log("Finished receiving gRPC data");
     var count = 0;
+    if(requestsList.length == 0) call.end();
     _.each(requestsList, (request) => {
       controller.individualDiscount(request).then(discountReply => {
         call.write(discountReply);
