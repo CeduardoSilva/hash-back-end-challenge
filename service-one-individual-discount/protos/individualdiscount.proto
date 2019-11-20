@@ -27,13 +27,13 @@ service Discount {
   rpc IndividualDiscountStream (stream IndividualDiscountRequest) returns (stream IndividualDiscountReply) {}
 }
 
-// The request message containing the user's name.
+// The request message containing the userId and productId.
 message IndividualDiscountRequest {
   string productId = 1;
   string userId = 2;
 }
 
-// The response message containing the greetings
+// The response message containing the discount
 message IndividualDiscountReply {
   string pct = 1;
   string value_in_cents = 2;
