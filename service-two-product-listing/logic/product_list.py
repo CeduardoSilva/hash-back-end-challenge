@@ -26,7 +26,6 @@ def getStream(requestData):
         
         try:
             discounts = grpc.getDiscountsStream(requestList)
-
             for i in range(0,len(discounts)):
                 products[i]["discount"] = discounts[i]
                 response.append(products[i])

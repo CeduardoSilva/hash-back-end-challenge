@@ -20,7 +20,10 @@ def test_getStream(mocker):
     mockedRequest = { "userId": "ID1" }
 
     result = logic.getStream(mockedRequest)
-    assert result == logicResponse.response
+    print(str(result))
+    print("\n\n")
+    print(str(logicResponse.response))
+    assert str(result) == str(logicResponse.response)
     
 if __name__ == '__main__':
     unittest.main()

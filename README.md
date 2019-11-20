@@ -1,6 +1,6 @@
 # Hash Back-end Challenge
 
-Solution to Hash Back-end Challenge. It is comprised of two microservices written in Python and Node.JS to retrieve a list of products and discounts following a set of discount rules. Each microservice and their shared database is to be run on Docker containers.
+Solution to Hash Back-end Challenge. It is comprised of two microservices written in Python and Node.JS to retrieve a list of products with their original prices and discount information following a set of discount rules. Each microservice and their shared database is to be run on Docker containers.
 
 ## Requirements
 
@@ -78,7 +78,7 @@ Run the following command to create the Docker Network which the services are go
 docker network create hash-challenge-net
 ```
 
-Confirm the successfull creation of the network with the following command. The hash-challenge-net must be listed.
+Confirm the successfull creation of the network with the following command. The hash-challenge-net network must be listed.
 
 ```
 docker network ls
@@ -143,6 +143,44 @@ To run the Service Two Container execute the following commando from any directo
  ```
  docker container ls
  ```
+
+### 4 - Using the services
+
+After all the containers are running the `GET /product` route will be available at `localhost:5000`. A GET request to this route will return the list of all products contained at the data base and if the optional user id is sent in the request header `X-USER-ID` then the products will return with the applicable discounts regarding the user.
+
+* Return Example
+```javascript
+{
+    "products": [
+        {
+            "description": "Description 1", // Product's Description
+            "discount": {
+                "applicable_discounts": "Birthday Discount", // String with the names of all applicable discounts
+                "pct": 0.05, // Discount Percentage
+                "value_in_cents": 50 // Discount Value in cents
+            },
+            "id": "ID1",
+            "price_in_cents": 1000, // Original Price
+            "title": "Product 1" // Product's Title
+        },
+        {
+            "description": "Description 2",
+            "discount": {
+                "applicable_discounts": "",
+                "pct": 0.0,
+                "value_in_cents": 0
+            },
+            "id": "ID2",
+            "price_in_cents": 569,
+            "title": "Product 2"
+        },
+        /* More products... */
+    ]
+}
+```
+
+In the case of Service One being offline or throwing an error the discount proprierty of the product will be a `{}`.
+Configuration of ports used by both services and other parameters can be found on the config directory on both services root directory.
 
 ## Tests
 

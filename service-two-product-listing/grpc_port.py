@@ -29,6 +29,7 @@ def generateMessages(dataList):
 
     """
     for pair in dataList:
+        print("Sending data...")
         yield makeRequest(pair["productId"], pair["userId"])
 
 def getDiscountsStream(dataList):
@@ -44,7 +45,11 @@ def getDiscountsStream(dataList):
         stub = indDisc_grpc.DiscountStub(channel)
         discounts = stub.IndividualDiscountStream(generateMessages(dataList))
         response = []
+        print("discounts")
+        print(discounts)
         for data in discounts:
+            print("data")
+            print(data)
             response.append({ "pct": round(float(data.pct),2), "value_in_cents": int(data.value_in_cents), "applicable_discounts": data.applicable_discounts })
         print("Response")
         print(response)
