@@ -6,7 +6,7 @@ import config.httpconfig as httpconfig
 
 app = Flask(__name__)
 
-@app.route('/productStream',methods = ['GET'])
+@app.route('/product',methods = ['GET'])
 def productStream():
     """Receives a HTTP Get request and return a list of Products.
 
